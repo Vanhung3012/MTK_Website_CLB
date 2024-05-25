@@ -1,12 +1,10 @@
-# MÔN HỌC: Design Pattern
-# Đề tài: News Web
+# MÔN HỌC: Mẫu Thiết Kế
+# Đề tài: Xây Dựng Website CLB
 # Author:
-Trần Nguyễn Huy Trường - 20110590
-Nguyễn Phước Công - 20110447
-Nguyễn Nhật Tính - 20110576
+2110054_HoVanHung
 # Công nghệ sử dụng: NodeJS, MongoDB
 # Hướng dẫn cài đặt:
-- git clone https://github.com/truongtnh7522/NewsWeb
+- git clone [https://github.com/truongtnh7522/NewsWeb](https://github.com/Vanhung3012/MTK_Website_CLB.git)
 - chạy code bằng VSCode
 - npm install nodemon
 - cd src
