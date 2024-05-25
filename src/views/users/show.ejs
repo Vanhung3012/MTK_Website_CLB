@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Details</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #ffffff;
+      overflow: hidden;
+    }
+    .container {
+      display: block;
+      background-color: #ffffff;
+      color: #59815B;
+      height: 60%;
+      width: 600px;
+      border-radius: 10px;
+      padding: 20px;
+      border: 1px solid rgb(0, 0, 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .container .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .container .header a {
+      text-decoration: none;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: #59815B;
+    }
+    .container h1 {
+      margin: 20px 0;
+    }
+    .container h2 {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div style="width: 80%">
+      <div class="header">
+        <a href="/articles/userlist">
+          <i style="font-size: 50px" class="fa fa-angle-left"></i>
+        </a>
+        <h1>User Details</h1>
+      </div>
+      <h2>Name: <%= user.name %></h2>
+      <h2>Address: <%= user.address %></h2>
+      <h2>Phone: <%= user.sdt %></h2>
+      <h2>Email: <%= user.email %></h2>
+      <h2>Status: <%= user.status ? 'Active' : 'Inactive' %></h2>
+      <!-- Add more details here if needed -->
+    </div>
+  </div>
+</body>
+</html>

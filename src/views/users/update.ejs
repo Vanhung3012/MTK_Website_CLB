@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Update</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <style>
+    .BTN:hover {
+      background-color: coral;
+    }
+    input[type="file"]::file-selector-button {
+      margin-right: 20px;
+      border: none;
+      background: #59815B;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s ease-in-out;
+    }
+    input[type="file"]::file-selector-button:hover {
+      background: #466942;
+    }
+    img {
+      height: 60px;
+      width: 60px;
+    }
+  </style>
+</head>
+<body
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffffff;
+    overflow: hidden;
+  "
+>
+  <div
+    style="
+      display: block;
+      background-color: #ffffff;
+      color: #59815B;
+      height: 90%;
+      width: 600px;
+      border-radius: 10px;
+      padding-bottom: 10px;
+      border: 1px solid rgb(0, 0, 0);
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    "
+  >
+    <div style="display: flex; align-items: center; justify-content: center; position: relative;">
+      <a
+        href="/articles/userlist"
+        style="
+          text-decoration: none;
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          color: #59815B;
+        "
+      ><i style="font-size: 50px" class="fa fa-angle-left"></i></a>
+      <h1>Update User</h1>
+    </div>
+    <div style="margin-top: 15px; height: auto;"></div>
+    <form action="/articles/userupdate/update/<%= user._id %>" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_method" value="PUT">
+      <div style="display: flex; align-items: center; justify-content: start">
+        <label for="name" style="margin-right: 85px; font-size: 20px; margin-left: 20px;">Name:</label>
+        <input value="<%= user.name %>" type="text" name="name" id="name" required style="
+          height: 20px;
+          width: 400px;
+          background-color: white;
+          outline: none;
+          border: 1px solid black;
+          color: black;
+          font-size: 20px;
+          border-radius: 4px;
+          padding: 5px;
+        "/>
+      </div>
+      <br />
+      <div style="display: flex; align-items: center; justify-content: start">
+        <label for="address" style="margin-right: 68px; font-size: 20px; margin-left: 20px;">Address:</label>
+        <input value="<%= user.address %>" type="text" name="address" id="address" required style="
+          height: 20px;
+          width: 400px;
+          background-color: white;
+          outline: none;
+          border: 1px solid black;
+          color: black;
+          font-size: 20px;
+          border-radius: 4px;
+          padding: 5px;
+        "/>
+      </div>
+      <br />
+      <div style="display: flex; align-items: center; justify-content: start">
+        <label for="sdt" style="margin-right: 15px; font-size: 20px; margin-left: 20px;">Phone Number:</label>
+        <input value="<%= user.sdt %>" type="text" name="sdt" id="sdt" required style="
+          height: 20px;
+          width: 400px;
+          background-color: white;
+          outline: none;
+          border: 1px solid black;
+          color: black;
+          font-size: 20px;
+          border-radius: 4px;
+          padding: 5px;
+        "/>
+      </div>
+      <br />
+      <div style="display: flex; align-items: center; justify-content: start; margin-bottom: 20px;">
+        <label for="image" style="margin-right: 85px; font-size: 20px; margin-left: 20px;">Image:</label>
+        <input type="file" id="image" name="image" required placeholder="Profile Image" />
+        <div id="preview" style="width: 30px; height: 30px"></div>
+      </div>
+      <br />
+      <div style="display: flex; align-items: center; justify-content: start">
+        <label for="email" style="margin-right: 85px; font-size: 20px; margin-left: 20px;">Email:</label>
+        <input value="<%= user.email %>" type="email" name="email" id="email" required style="
+          height: 20px;
+          width: 400px;
+          background-color: white;
+          outline: none;
+          border: 1px solid black;
+          color: black;
+          font-size: 20px;
+          border-radius: 4px;
+          padding: 5px;
+        "/>
+      </div>
+      <br />
+      <div style="display: flex; align-items: center; justify-content: start">
+        <label for="password" style="margin-right: 57px; font-size: 20px; margin-left: 20px;">Password:</label>
+        <input type="password" name="password" id="password" required style="
+          height: 20px;
+          width: 400px;
+          background-color: white;
+          outline: none;
+          border: 1px solid black;
+          color: black;
+          font-size: 20px;
+          border-radius: 4px;
+          padding: 5px;
+        "/>
+      </div>
+      <br />
+      <div style="display: flex;">
+        <div style="display: flex; align-items: center; justify-content: start; margin-right: 10px;">
+          <label for="roles" style="margin-right: 88px; font-size: 20px; margin-left: 20px;">Roles:</label>
+          <select name="roles" id="roles" style="
+            outline: none;
+            width: 150px;
+            height: 30px;
+            border: 2px solid #f2f5fa;
+            color: black;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+          ">
+            <option value="admin" style="color: black; font-size: 20px; cursor: pointer;">Admin</option>
+            <option value="user" selected style="color: black; font-size: 20px; cursor: pointer;">User</option>
+          </select>
+        </div>
+        <br />
+        <div style="display: flex; align-items: center; justify-content: start">
+          <label for="status" style="margin-right: 85px; font-size: 20px; margin-left: 20px;">Status:</label>
+          <select name="status" id="status" style="
+            height: 35px;
+            width: 100px;
+            background-color: white;
+            outline: none;
+            border: 1px solid black;
+            color: black;
+            font-size: 20px;
+            border-radius: 8px;
+            padding: 5px;
+          ">
+            <option value="true" <%= user.status ? 'selected' : '' %> style="width: 80px;">True</option>
+            <option value="false" <%= !user.status ? 'selected' : '' %> style="width: 80px;">False</option>
+          </select>
+        </div>
+      </div>
+      <br />
+      <div style="display: flex; align-items: center; justify-content: center; margin-top: 40px;">
+        <button type="submit" style="
+          width: 200px;
+          height: 50px;
+          font-size: 20px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          cursor: pointer;
+          background-color: #59815B;
+          outline: none;
+          border: 2px solid #ffffff;
+          color: white;
+          border-radius: 8px;
+        ">Update User</button>
+      </div>
+    </form>
+  </div>
+</body>
+<script>
+  // Lấy đối tượng input và div preview
+  const imageInput = document.getElementById("image");
+  const preview = document.getElementById("preview");
+
+  // Thêm sự kiện onchange cho input
+  imageInput.addEventListener("change", function (event) {
+    // Lấy danh sách các tệp tin đã chọn
+    const fileList = event.target.files;
+
+    // Kiểm tra xem có tệp tin nào được chọn hay không
+    if (fileList.length > 0) {
+      // Lấy tệp tin đầu tiên từ danh sách
+      const file = fileList[0];
+
+      // Kiểm tra xem tệp tin có phải là hình ảnh hay không
+      if (file.type.startsWith("image/")) {
+        // Tạo đối tượng FileReader để đọc nội dung của tệp tin
+        const reader = new FileReader();
+
+        // Thiết lập sự kiện khi đọc hoàn thành
+        reader.onload = function () {
+          // Tạo đối tượng hình ảnh
+          const image = new Image();
+          image.src = reader.result;
+
+          // Thêm hình ảnh vào div preview
+          preview.innerHTML = "";
+          preview.appendChild(image);
+        };
+
+        // Đọc nội dung của tệp tin dưới dạng URL
+        reader.readAsDataURL(file);
+      } else {
+        // Nếu tệp tin không phải là hình ảnh, hiển thị thông báo lỗi
+        preview.innerHTML = "Không phải là hình ảnh!";
+      }
+    } else {
+      // Nếu không có tệp tin nào được chọn, xóa hình ảnh khỏi div preview
+      preview.innerHTML = "";
+    }
+  });
+</script>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Create New User</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <style>
+    input[type="file"]::file-selector-button {
+      margin-right: 20px;
+      border: none;
+      background: #59815B;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s ease-in-out;
+    }
+    input[type="file"]::file-selector-button:hover {
+      background: #436942;
+    }
+    img {
+      height: 60px;
+      width: 60px;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #ffffff;
+      overflow: hidden;
+    }
+    .container {
+      display: block;
+      background-color: #ffffff;
+      color: #59815B;
+      height: 90%;
+      width: 600px;
+      border-radius: 10px;
+      padding-bottom: 10px;
+      border: 1px solid rgb(0, 0, 0);
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .header a {
+      text-decoration: none;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    .header h1 {
+      margin: 20px 0;
+    }
+    .form-group {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      margin: 10px 20px;
+    }
+    .form-group label {
+      margin-right: 20px;
+      font-size: 20px;
+      width: 150px;
+    }
+    .form-group input,
+    .form-group select {
+      height: 30px;
+      width: 400px;
+      background-color: white;
+      outline: none;
+      border: 1px solid rgb(0, 0, 0);
+      color: black;
+      font-size: 20px;
+      border-radius: 4px;
+      padding: 5px;
+    }
+    .form-group select {
+      width: 150px;
+    }
+    .form-group input[type="checkbox"] {
+      width: 25px;
+      height: 25px;
+      margin: 0;
+      padding: 0;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 40px;
+    }
+    .btn button {
+      width: 130px;
+      height: 50px;
+      font-size: 20px;
+      cursor: pointer;
+      background-color: #59815B;
+      outline: none;
+      border: 2px solid rgb(255, 252, 252);
+      color: white;
+      border-radius: 8px;
+    }
+    #preview {
+      width: 30px;
+      height: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <a href="/articles/userlist"><i style="font-size: 50px; color: #59815B" class="fa fa-angle-left"></i></a>
+      <h1>Create New User</h1>
+    </div>
+    <form action="/articles/usercreate/create" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required />
+      </div>
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <input type="text" name="address" id="address" required />
+      </div>
+      <div class="form-group">
+        <label for="sdt">Phone Number:</label>
+        <input type="text" name="sdt" id="sdt" required />
+      </div>
+      <div class="form-group">
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image" required />
+        <div id="preview"></div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required />
+      </div>
+      <div class="form-group">
+        <label for="roles">Roles:</label>
+        <select name="roles" id="roles">
+          <option value="admin">Admin</option>
+          <option value="user" selected>User</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <input type="checkbox" name="status" id="status" value="true" checked />
+      </div>
+      <div class="btn">
+        <button type="submit">Create User</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    const imageInput = document.getElementById("image");
+    const preview = document.getElementById("preview");
+
+    imageInput.addEventListener("change", function (event) {
+      const fileList = event.target.files;
+
+      if (fileList.length > 0) {
+        const file = fileList[0];
+
+        if (file.type.startsWith("image/")) {
+          const reader = new FileReader();
+
+          reader.onload = function () {
+            const image = new Image();
+            image.src = reader.result;
+
+            preview.innerHTML = "";
+            preview.appendChild(image);
+          };
+
+          reader.readAsDataURL(file);
+        } else {
+          preview.innerHTML = "Không phải là hình ảnh!";
+        }
+      } else {
+        preview.innerHTML = "";
+      }
+    });
+  </script>
+</body>
+</html>

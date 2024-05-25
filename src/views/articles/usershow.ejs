@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>CLB Detail</title>
+  <style>
+    .slideshow-container {
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+    }
+
+    .slide {
+      display: none;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .active {
+      display: block;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .header {
+      display: flex;
+      justify-content: center;
+      height: 50px;
+      background-color: #185c98;
+      position: sticky;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    .header-content {
+      width: 80%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      width: 100%;
+      cursor: pointer;
+      color: white;
+    }
+
+    .nav p {
+      color: white;
+      padding-left: 15px;
+      padding-right: 15px;
+      margin: 0;
+      line-height: 50px;
+    }
+
+    .nav div {
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .content {
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+    }
+
+    .main-content {
+      width: 700px;
+    }
+
+    .main-content h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .main-content p {
+      margin: 10px 0;
+    }
+
+    .main-content img {
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    .main-content .article-meta {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .main-content .article-meta b {
+      color: #333;
+    }
+
+    .sidebar {
+      width: 300px;
+      margin-left: 40px;
+    }
+
+    .sidebar img {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .footer a {
+      color: #185c98;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <div class="header-content">
+      <div class="nav">
+        <i class="fa fa-home"></i>
+        <p><b>CHỦ ĐỀ</b></p>
+        <% categories.forEach((category) => { %>
+          <div onclick="onCategoryChange('<%= category._id %>')">
+            <%= category.name %>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="main-content">
+      <h1><%= article.title %></h1>
+      <p class="article-meta">Author: <b><%= article.author %></b></p>
+      <p class="article-meta">Created At: <b><%= article.createdAt.toDateString() %></b></p>
+      <p><b>Description:</b> <%= article.description %></p>
+      <img src="<%= article.imageUrl %>" alt="Article Image" />
+
+      <div class="article-content">
+        <p><%= article.content %></p>
+      </div>
+
+      <p class="article-meta">Category: <b><%= article.category.name %></b></p>
+
+      <div class="footer">
+        <a href="/articles/user">Trở lại</a>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <img src="https://static.criteo.net/design/dt/100887/221123/f276927e4a634e7f8176f88ce12a687a_image_ad_300x600.jpeg" alt="">
+      <img src="https://tpc.googlesyndication.com/simgad/9404959985424765689?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&rs=AOga4qnMzQu_nHeIHWYwzlnrecV6sj3m2Q" alt="">
+    </div>
+  </div>
+
+  <script>
+    function onCategoryChange(categoryId) {
+      window.location.href = `/articles/user/category/${categoryId}`;
+    }
+  </script>
+</body>
+
+</html>

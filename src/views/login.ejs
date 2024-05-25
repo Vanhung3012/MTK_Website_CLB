@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  </head>
+  <style>
+    /* CSS mới */
+    .form-container {
+      margin: 20px; /* Khoảng cách giữa các div */
+    }
+  </style>
+  <body
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #ffffff;
+    "
+  >
+    <div
+      style="
+        display: block;
+        background-color: #ffffff;
+        border: 1px solid rgb(0, 0, 0);
+        color: #59815B;
+        height: 80%;
+        width: 500px;
+        border-radius: 10px;
+      "
+    >
+      <div style="display: flex; align-items: center; justify-content: center">
+        <h1>LOGIN</h1>
+      </div>
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: rgb(0, 0, 0);
+        "
+      >
+        <h3>Hãy nhập Email và mật khẩu!</h3>
+      </div>
+      <% if (error) { %>
+      <p><%= error %></p>
+      <% } %>
+      <!-- Thêm class "form-container" vào các div cần giảm khoảng cách -->
+      <div class="form-container" style="height: auto">
+        <form id="loginForm">
+          <div
+            style="display: flex; align-items: center; justify-content: center"
+          >
+            <label for="email" style="color: rgb(0, 0, 0)"
+              ><i class="bx bxs-user-pin"></i
+            ></label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email"
+              required
+              style="
+                height: 35px;
+                width: 350px;
+                background-color: #ffffff;
+                outline: none;
+                border: 1px solid rgb(0, 0, 0);
+                color: rgb(0, 0, 0);
+                font-size: 20px;
+                border-radius: 4px;
+                padding: 5px;
+              "
+            />
+          </div>
+          <br />
+          <div
+            style="display: flex; align-items: center; justify-content: center"
+          >
+            <label for="password"><i class="bx bx-key"></i></label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              required
+              style="
+                height: 35px;
+                width: 350px;
+                background-color: #ffffff;
+                outline: none;
+                border: 1px solid rgb(0, 0, 0);
+                color: rgb(0, 0, 0);
+                font-size: 20px;
+                border-radius: 4px;
+                padding: 5px;
+              "
+            /><br />
+          </div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-top: 40px;
+            "
+          >
+            <button
+              type="submit"
+              style="
+                width: 130px;
+                height: 50px;
+                font-size: 20px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+
+                cursor: pointer;
+                background-color: #59815B;
+                outline: none;
+                border: 2px solid rgb(255, 252, 252);
+                color: rgb(255, 255, 255);
+                border-radius: 4px;
+              "
+            >
+              Login
+            </button>
+          </div>
+        </form>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0px;
+          "
+        >
+          <p>
+            Don't have an account?
+            <a
+              href="/registerForm"
+              style="text-decoration: none; color: rgb(0, 0, 0)"
+              >Sign Up</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        $("#loginForm").submit(function (event) {
+          event.preventDefault();
+
+          var formData = $(this).serialize();
+
+          $.ajax({
+            type: "POST",
+            url: "/login",
+            data: formData,
+            success: function (response) {
+              window.location.href = response.redirectTo;
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
